@@ -17,15 +17,25 @@ class ContentPage extends Component {
     onSetTitle: PropTypes.func.isRequired,
   };
 
+  findStack(event){
+    alert(event.target.elements.namedItem('issue').value);
+    return false;
+  };
+
   render() {
     this.context.onSetTitle(this.props.title);
     return (
       <div className="ContentPage">
         <div className="ContentPage-container">
-          {
-            this.props.path === '/' ? null : <h1>{this.props.title}</h1>
-          }
-          <div dangerouslySetInnerHTML={{__html: this.props.content || ''}} />
+          <label for="stack">Copy your stack here</label>
+          <textarea id="stack" name="stack" form="stack_form" rows="20" cols="125"/>
+          <span> Link this issue if not found : </span>
+          <form id="stack_form" onSubmit={this.findStack}>
+            <input type="text" name="issue" id="stack" />
+            <div> 
+              <button type="submit" form="stack_form">Send</button>
+            </div>
+          </form>
         </div>
       </div>
     );

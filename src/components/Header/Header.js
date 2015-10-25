@@ -14,7 +14,7 @@ class Header extends Component {
       <div className="Header">
         <div className="Header-container">
           <div className="Header-banner">
-            <h1 className="Header-bannerTitle">Stack-To-Issue</h1>
+            <h1 className="Header-bannerTitle">Stack To Issue</h1>
           </div>
         </div>
       </div>

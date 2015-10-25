@@ -1,10 +1,12 @@
 ---
-title: React.js Starter Kit
+title: Stack To Issue
 component: ContentPage
 ---
 div.row
   div.col-sm-4
-    h2 Enter your error stack here
-    textarea(name="stack" form="stack_form")
-    form(id="stack_form" name="stack_form", action="/login", method="post")
-      input(type="submit", value="Send")
+    label(for="stack") Copy your stack here
+    textarea(id="stack" name="stack" form="stack_form" rows="20" cols="125")
+    span Link this issue if not found : 
+    input(type="text", name="issue", id="stack")
+    div 
+      button(type="button" onClick="this.findStack") Send
