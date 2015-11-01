@@ -3,9 +3,15 @@
 import React, { PropTypes, Component } from 'react';
 import styles from './ContentPage.css';
 import withStyles from '../../decorators/withStyles';
+import request from 'superagent';
 
 @withStyles(styles)
 class ContentPage extends Component {
+
+  constructor(props){
+    super(props);
+    this.findStack=this.findStack.bind(this);
+  }
 
   static propTypes = {
     path: PropTypes.string.isRequired,
@@ -17,25 +23,25 @@ class ContentPage extends Component {
     onSetTitle: PropTypes.func.isRequired,
   };
 
-  findStack(event){
-    alert(event.target.elements.namedItem('issue').value);
-    return false;
+  findStack(){
+    var stack=this.refs.stack.getDOMNode().value;
+    var issue=this.refs.issue.getDOMNode().value;
+    request.get
   };
 
   render() {
+    
     this.context.onSetTitle(this.props.title);
     return (
       <div className="ContentPage">
         <div className="ContentPage-container">
           <label for="stack">Copy your stack here</label>
-          <textarea id="stack" name="stack" form="stack_form" rows="20" cols="125"/>
+          <textarea ref="stack" id="stack" name="stack" form="stack_form" rows="20" cols="125"/>
           <span> Link this issue if not found : </span>
-          <form id="stack_form" onSubmit={this.findStack}>
-            <input type="text" name="issue" id="stack" />
+            <input type="text" name="issue" id="issue" ref="issue" />
             <div> 
-              <button type="submit" form="stack_form">Send</button>
+              <input type="button" value="Send" onClick={this.findStack}/>
             </div>
-          </form>
         </div>
       </div>
     );
