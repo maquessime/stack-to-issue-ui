@@ -24,9 +24,15 @@ class ContentPage extends Component {
   };
 
   findStack(){
-    var stack=this.refs.stack.getDOMNode().value;
-    var issue=this.refs.issue.getDOMNode().value;
-    request.get
+    var stack=this.refs.stack.value;
+    var issue=this.refs.issue.value;
+    request
+     .post('/api/content')
+     .send(stack)
+     .set('Accept', 'application/json')
+     .end(function(err, res){
+       alert(res.body)
+    });
   };
 
   render() {

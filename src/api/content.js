@@ -5,6 +5,7 @@ import { Router } from 'express';
 import jade from 'jade';
 import fm from 'front-matter';
 import fs from '../utils/fs';
+import request from 'superagent';
 
 // A folder with Jade/Markdown/HTML content pages
 const CONTENT_DIR = join(__dirname, './content');
@@ -43,6 +44,16 @@ router.get('/', async (req, res, next) => {
     next(err);
   }
 });
+
+router.post('/', function(req,res){
+    request
+     .post('something')
+     .send(req.body)
+     .end(function(err, backendResponse){
+       res.status(backendResponse.status).send(backendResponse.text)
+    })
+   }
+  );
 
 export default router;
 
