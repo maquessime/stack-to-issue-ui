@@ -28,10 +28,10 @@ class ContentPage extends Component {
     var issue=this.refs.issue.value;
     request
      .post('/api/content')
+     .set('Content-type','text/plain;charset=UTF-8')
      .send(stack)
-     .set('Accept', 'application/json')
      .end(function(err, res){
-       alert(res.body)
+       alert(res)
     });
   };
 

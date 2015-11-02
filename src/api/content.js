@@ -46,8 +46,10 @@ router.get('/', async (req, res, next) => {
 });
 
 router.post('/', function(req,res){
+    
     request
      .post(process.env.BACKEND_URL)
+     .set('Content-type','text/plain;charset=UTF-8')
      .send(req.body)
      .end(function(err, backendResponse){
        res.status(backendResponse.status).send(backendResponse.text)
