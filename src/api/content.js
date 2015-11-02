@@ -47,7 +47,7 @@ router.get('/', async (req, res, next) => {
 
 router.post('/', function(req,res){
     request
-     .post('something')
+     .post(process.env.BACKEND_URL)
      .send(req.body)
      .end(function(err, backendResponse){
        res.status(backendResponse.status).send(backendResponse.text)
