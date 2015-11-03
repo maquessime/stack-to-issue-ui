@@ -33,7 +33,7 @@ class ContentPage extends Component {
      .set('Content-Type','text/plain;charset=UTF-8')
      .send(stack)
      .end(function(err, res){
-       return (<Issues issues="res.body.issues" />);
+        React.render(<Issues issues={res.body.issues} />,document.getElementById("issues"));
     });
   };
 
@@ -50,7 +50,7 @@ class ContentPage extends Component {
           <div> 
             <input type="button" value="Send" onClick={this.findStack}/>
           </div>
-          
+          <div id="issues"></div>
         </div>
       </div>
     );
