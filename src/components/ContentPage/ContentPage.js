@@ -4,6 +4,7 @@ import React, { PropTypes, Component } from 'react';
 import styles from './ContentPage.css';
 import withStyles from '../../decorators/withStyles';
 import request from 'superagent';
+import Issues from '../Issues'
 
 @withStyles(styles)
 class ContentPage extends Component {
@@ -17,6 +18,7 @@ class ContentPage extends Component {
     path: PropTypes.string.isRequired,
     content: PropTypes.string.isRequired,
     title: PropTypes.string,
+    issues: PropTypes.string,
   };
 
   static contextTypes = {
@@ -28,10 +30,10 @@ class ContentPage extends Component {
     var issue=this.refs.issue.value;
     request
      .post('/api/content')
-     .set('Content-type','text/plain;charset=UTF-8')
+     .set('Content-Type','text/plain;charset=UTF-8')
      .send(stack)
      .end(function(err, res){
-       alert(res)
+       return (<Issues issues="res.body.issues" />);
     });
   };
 
@@ -44,10 +46,11 @@ class ContentPage extends Component {
           <label for="stack">Copy your stack here</label>
           <textarea ref="stack" id="stack" name="stack" form="stack_form" rows="20" cols="125"/>
           <span> Link this issue if not found : </span>
-            <input type="text" name="issue" id="issue" ref="issue" />
-            <div> 
-              <input type="button" value="Send" onClick={this.findStack}/>
-            </div>
+          <input type="text" name="issue" id="issue" ref="issue" />
+          <div> 
+            <input type="button" value="Send" onClick={this.findStack}/>
+          </div>
+          
         </div>
       </div>
     );

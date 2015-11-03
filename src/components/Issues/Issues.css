@@ -1,0 +1,52 @@
+/* React Starter Kit | MIT License | http://www.reactstarterkit.com/ */
+
+@import '../variables.css';
+
+:root {
+  --brand-color: #61dafb;
+}
+
+.® {
+  background: #000000;
+  color: #fff;
+}
+
+.Issues-container {
+  margin: 0 auto;
+  padding: 20px 0;
+  max-width: var(--max-content-width);
+}
+
+.Issues-brand {
+  color: color(var(--brand-color) lightness(+10%));
+  text-decoration: none;
+  font-size: 1.75em; /* ~28px */
+}
+
+.Issues-brandTxt {
+  margin-left: 10px;
+}
+
+.Issues-nav {
+  float: right;
+  margin-top: 6px;
+}
+
+.Issues-banner {
+  text-align: center;
+}
+
+.Issues-bannerTitle {
+  margin: 0;
+  padding: 10px;
+  font-weight: normal;
+  font-size: 4em;
+  line-height: 1em;
+}
+
+.Issues-bannerDesc {
+  padding: 0;
+  color: rgba(255, 255, 255, .5);
+  font-size: 1.25em;
+  margin: 0;
+}

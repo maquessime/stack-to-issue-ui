@@ -52,7 +52,7 @@ router.post('/', function(req,res){
      .set('Content-type','text/plain;charset=UTF-8')
      .send(req.body)
      .end(function(err, backendResponse){
-       res.status(backendResponse.status).send(backendResponse.text)
+       res.status(backendResponse.status).type("application/json").send(backendResponse.text)
     })
    }
   );
