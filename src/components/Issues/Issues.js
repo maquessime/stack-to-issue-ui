@@ -12,13 +12,19 @@ class Issues extends Component {
   };
 
   render() {
-    return (
-      	<ul>
-      	{this.props.issues.map(function(issue){
-      		return <li>{issue}</li>
-      	})}
-      	</ul>
-    );
+  	var issues = this.props.issues;
+  	if(issues.length>0)
+  	{
+	    return (
+
+	      	<ul>
+	      	{issues.map(function(issue){
+	      		return <li>{issue}</li>
+	      	})}
+	      	</ul>
+	    );
+	}
+	return (<p>No issue has been found!</p>);
   }
 
 }
