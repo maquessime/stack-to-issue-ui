@@ -27,13 +27,12 @@ class ContentPage extends Component {
 
   findStack(){
     var stack=this.refs.stack.value;
-    var issue=this.refs.issue.value;
     request
      .post('/api/content')
      .set('Content-Type','text/plain;charset=UTF-8')
      .send(stack)
      .end(function(err, res){
-        React.render(<Issues issues={res.body.issues} />,document.getElementById("issues"));
+        React.render(<Issues issues={res.body.issues} hash={res.body.hash} />,document.getElementById("issues"));
     });
   };
 
@@ -44,9 +43,7 @@ class ContentPage extends Component {
       <div className="ContentPage">
         <div className="ContentPage-container">
           <label for="stack">Copy your stack here</label>
-          <textarea ref="stack" id="stack" name="stack" form="stack_form" rows="20" cols="125"/>
-          <span> Link this issue if not found : </span>
-          <input type="text" name="issue" id="issue" ref="issue" />
+          <textarea ref="stack" id="stack" name="stack" rows="20" cols="125"/>
           <div> 
             <input type="button" value="Send" onClick={this.findStack}/>
           </div>
