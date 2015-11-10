@@ -26,7 +26,7 @@ class Issues extends Component {
      .set('Content-Type','application/json')
      .send('{"issues":["'+issue+'"]}')
      .end(function(err, res){
-        React.render(<Issues issues={res.body.issues} hash={res.body.hash} />,document.getElementById("issues"));
+        React.render(<Issues issues={[res.body.issues]} hash={res.body.hash} />,document.getElementById("issues"));
     });
   }
 

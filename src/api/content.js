@@ -58,13 +58,12 @@ router.post('/', function(req,res){
   );
 
 router.post('/stacks/:hash/issues', function(req,res){
-    
     request
      .post(process.env.BACKEND_URL+"/stacks/"+req.params.hash+"/issues")
-     .set('Content-type','application/json;charset=UTF-8')
+     .set('Content-type','application/json')
      .send(req.body)
      .end(function(err, backendResponse){
-       res.status(backendResponse.status)
+       res.status(backendResponse.status).send({})
     })
    }
   );
