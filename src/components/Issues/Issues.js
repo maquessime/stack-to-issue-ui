@@ -35,17 +35,21 @@ class Issues extends Component {
   	if(issues.length>0)
   	{
 	    return (
-
-	      	<ul>
-	      	{issues.map(function(issue){
-	      		return <li>{issue}</li>
-	      	})}
-	      	</ul>
+	    	<div>
+		    	<h2>Issues</h2>
+		    	<p>stack hash : {this.props.hash}</p>
+		      	<ul>
+		      	{issues.map(function(issue){
+		      		return <li>{issue}</li>
+		      	})}
+		      	</ul>
+		    </div>
 	    );
 	}
 	return (
 		
 		<div>
+			<h2>Issues</h2>
 			<p>No issue has been found!</p> 
 			<span>Link to an issue : </span><input type="text" id="issue" ref="issue"/>
 			<input type="hidden" ref="hash" value={this.props.hash}/>

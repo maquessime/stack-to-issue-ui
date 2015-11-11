@@ -42,7 +42,7 @@ class ContentPage extends Component {
     return (
       <div className="ContentPage">
         <div className="ContentPage-container">
-          <label for="stack">Copy your stack here</label>
+          <h2>Copy your stack here</h2>
           <textarea ref="stack" id="stack" name="stack" rows="20" cols="125"/>
           <div> 
             <input type="button" value="Send" onClick={this.findStack}/>
