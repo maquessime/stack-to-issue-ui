@@ -32,17 +32,20 @@ class Issues extends Component {
 
   render() {
   	var issues = this.props.issues;
+    var addIssue = <div><span>Link to an issue : </span><input type="text" id="issue" ref="issue"/>
+      <input type="hidden" ref="hash" value={this.props.hash}/>
+            <input type="button" value="Link" onClick={this.linkIssue}/></div>;
   	if(issues.length>0)
   	{
 	    return (
 	    	<div>
 		    	<h2>Issues</h2>
-		    	<p>stack hash : {this.props.hash}</p>
 		      	<ul>
 		      	{issues.map(function(issue){
 		      		return <li>{issue}</li>
 		      	})}
 		      	</ul>
+            {addIssue}
 		    </div>
 	    );
 	}
@@ -51,10 +54,8 @@ class Issues extends Component {
 		<div>
 			<h2>Issues</h2>
 			<p>No issue has been found!</p> 
-			<span>Link to an issue : </span><input type="text" id="issue" ref="issue"/>
-			<input type="hidden" ref="hash" value={this.props.hash}/>
-            <input type="button" value="Link" onClick={this.linkIssue}/>
-        </div>
+			{addIssue}
+    </div>
 		);
   }
 
