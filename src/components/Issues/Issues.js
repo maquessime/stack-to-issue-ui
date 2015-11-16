@@ -21,12 +21,14 @@ class Issues extends Component {
   linkIssue(){
   	var issue=this.refs.issue.value;
   	var hash=this.refs.hash.value;
+    var issues = this.props.issues;
+    issues.push(issue);
     request
      .post('/api/content/stacks/'+hash+'/issues')
      .set('Content-Type','application/json')
      .send('{"issues":["'+issue+'"]}')
      .end(function(err, res){
-        React.render(<Issues issues={[res.body.issues]} hash={res.body.hash} />,document.getElementById("issues"));
+        React.render(<Issues issues={issues} hash={hash} />,document.getElementById("issues"));
     });
   }
 
