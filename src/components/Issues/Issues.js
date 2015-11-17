@@ -15,7 +15,8 @@ class Issues extends Component {
 
   static propTypes = {
     issues: PropTypes.array,
-    hash: PropTypes.string
+    hash: PropTypes.string,
+    issueLinks: PropTypes.array,
   };
 
   linkIssue(){
@@ -23,12 +24,13 @@ class Issues extends Component {
   	this.refs.issue.value="";
   	var hash=this.refs.hash.value;
     var issues = this.addAndGetIssues(issue)
+    var issueLinks=this.props.issueLinks
     request
      .post('/api/content/stacks/'+hash+'/issues')
      .set('Content-Type','application/json')
      .send('{"issues":["'+issue+'"]}')
      .end(function(err, res){
-        React.render(<Issues issues={issues} hash={hash} />,document.getElementById("issues"));
+        React.render(<Issues issues={issues} hash={hash} issueLinks={issueLinks} />,document.getElementById("issues"));
     });
   }
 
@@ -40,6 +42,7 @@ class Issues extends Component {
 
   render() {
   	var issues = this.props.issues;
+  	var issueLinks=this.props.issueLinks;
     var addIssue = <div><span>Link to an issue : </span><input type="text" id="issue" ref="issue"/>
       <input type="hidden" ref="hash" value={this.props.hash}/>
             <input type="button" value="Link" onClick={this.linkIssue}/></div>;
@@ -49,8 +52,8 @@ class Issues extends Component {
 	    	<div>
 		    	<h2>Issues</h2>
 		      	<ul>
-		      	{issues.map(function(issue){
-		      		return <li>{issue}</li>
+		      	{issues.map(function(issue,index){
+		      		return <li><a target="_blank" href={issueLinks[index]}>{issue}</a></li>
 		      	})}
 		      	</ul>
             {addIssue}

@@ -32,7 +32,7 @@ class ContentPage extends Component {
      .set('Content-Type','text/plain;charset=UTF-8')
      .send(stack)
      .end(function(err, res){
-        React.render(<Issues issues={res.body.issues} hash={res.body.hash} />,document.getElementById("issues"));
+        React.render(<Issues issues={res.body.issues} hash={res.body.hash} issueLinks={res.body.issue_links} />,document.getElementById("issues"));
     });
   };
 

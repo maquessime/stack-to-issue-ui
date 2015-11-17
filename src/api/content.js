@@ -52,7 +52,14 @@ router.post('/', function(req,res){
      .set('Content-type','text/plain;charset=UTF-8')
      .send(req.body)
      .end(function(err, backendResponse){
-       res.status(backendResponse.status).type("application/json").send(backendResponse.text)
+       var body = backendResponse.body
+       if(body.hasOwnProperty('issues'))
+       {
+          body.issue_links=body.issues.map(function(issue){
+            return process.env.ISSUE_URL+issue
+          });
+       }
+       res.status(backendResponse.status).type("application/json").send(body)
     })
    }
   );
