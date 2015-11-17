@@ -20,10 +20,9 @@ class Issues extends Component {
 
   linkIssue(){
   	var issue=this.refs.issue.value;
-  	this.refs.issue="";
+  	this.refs.issue.value="";
   	var hash=this.refs.hash.value;
-    var issues = this.props.issues;
-    issues.push(issue);
+    var issues = this.addAndGetIssues(issue)
     request
      .post('/api/content/stacks/'+hash+'/issues')
      .set('Content-Type','application/json')
@@ -31,6 +30,12 @@ class Issues extends Component {
      .end(function(err, res){
         React.render(<Issues issues={issues} hash={hash} />,document.getElementById("issues"));
     });
+  }
+
+  addAndGetIssues(issue){
+  	var issues = this.props.issues;
+    issues.push(issue);
+    return issues;
   }
 
   render() {
