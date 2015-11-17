@@ -30,6 +30,7 @@ class Issues extends Component {
      .set('Content-Type','application/json')
      .send('{"issues":["'+issue+'"]}')
      .end(function(err, res){
+     	issueLinks.push(res.body.issue_link)
         React.render(<Issues issues={issues} hash={hash} issueLinks={issueLinks} />,document.getElementById("issues"));
     });
   }

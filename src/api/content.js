@@ -70,7 +70,7 @@ router.post('/stacks/:hash/issues', function(req,res){
      .set('Content-type','application/json')
      .send(req.body)
      .end(function(err, backendResponse){
-       res.status(backendResponse.status).send({})
+       res.status(backendResponse.status).send({"issue_link":process.env.ISSUE_URL+req.body.issues[0]})
     })
    }
   );
