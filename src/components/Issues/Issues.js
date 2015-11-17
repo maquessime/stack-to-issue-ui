@@ -20,6 +20,7 @@ class Issues extends Component {
 
   linkIssue(){
   	var issue=this.refs.issue.value;
+  	this.refs.issue="";
   	var hash=this.refs.hash.value;
     var issues = this.props.issues;
     issues.push(issue);
