@@ -44,9 +44,13 @@ class Issues extends Component {
   render() {
   	var issues = this.props.issues;
   	var issueLinks=this.props.issueLinks;
-    var addIssue = <div><span>Link to an issue : </span><input type="text" id="issue" ref="issue"/>
-      <input type="hidden" ref="hash" value={this.props.hash}/>
-            <input type="button" value="Link" onClick={this.linkIssue}/></div>;
+    var addIssue = <div><ul><li>Link to an issue : </li>
+<li><input type="text" ref="hash" size="74" value={this.props.hash}/></li>
+    <li><input type="text" id="issue" ref="issue"/></li>
+            <li><input type="button" value="Link" onClick={this.linkIssue}/>
+</li>
+            </ul>
+            </div>;
   	if(issues.length>0)
   	{
 	    return (

@@ -7,7 +7,7 @@ import App from './components/App';
 import ContentPage from './components/ContentPage';
 import ContactPage from './components/ContactPage';
 import LoginPage from './components/LoginPage';
-import RegisterPage from './components/RegisterPage';
+import Hash from './components/Hash';
 import NotFoundPage from './components/NotFoundPage';
 import ErrorPage from './components/ErrorPage';
 
@@ -21,7 +21,7 @@ const router = new Router(on => {
 
   on('/login', async () => <LoginPage />);
 
-  on('/register', async () => <RegisterPage />);
+  on('/hash', async () => <Hash />);
 
   on('*', async (state) => {
     const content = await http.get(`/api/content?path=${state.path}`);

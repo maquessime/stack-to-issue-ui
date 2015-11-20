@@ -2,10 +2,11 @@
 
 import React, { PropTypes, Component } from 'react';
 import withStyles from '../../decorators/withStyles';
-import styles from './RegisterPage.css';
+import styles from './Hash.css';
+import Issues from '../Issues'
 
 @withStyles(styles)
-class RegisterPage extends Component {
+class Hash extends Component {
 
   static contextTypes = {
     onSetTitle: PropTypes.func.isRequired,
@@ -15,15 +16,10 @@ class RegisterPage extends Component {
     const title = 'New User Registration';
     this.context.onSetTitle(title);
     return (
-      <div className="RegisterPage">
-        <div className="RegisterPage-container">
-          <h1>{title}</h1>
-          <p>...</p>
-        </div>
-      </div>
+      <Issues issues={[]} hash="" issueLinks={[]} />
     );
   }
 
 }
 
-export default RegisterPage;
+export default Hash;
