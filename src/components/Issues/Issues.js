@@ -22,6 +22,9 @@ class Issues extends Component {
   linkIssue(){
   	var issue=this.refs.issue.value;
   	this.refs.issue.value="";
+    if(issue==""){
+      return;
+    }
   	var hash=this.refs.hash.value;
     var issues = this.addAndGetIssues(issue)
     var issueLinks=this.props.issueLinks
@@ -41,15 +44,19 @@ class Issues extends Component {
     return issues;
   }
 
+  handleChange(event) {
+    this.setState({value: event.target.value});
+  }
+
   render() {
   	var issues = this.props.issues;
   	var issueLinks=this.props.issueLinks;
-    var addIssue = <div><ul><li>Link to an issue : </li>
-<li><input type="text" ref="hash" size="74" value={this.props.hash}/></li>
-    <li><input type="text" id="issue" ref="issue"/></li>
-            <li><input type="button" value="Link" onClick={this.linkIssue}/>
-</li>
-            </ul>
+    var addIssue = <div><h3>Link to an issue :</h3>
+    <form>
+<span for="hash">Hash : </span><input type="text" id="hash" ref="hash" size="74" onChange={this.handleChange} value={this.props.hash}/><br/>
+    <span>Issue : </span><input type="text" id="issue" ref="issue"/><br/>
+            <input type="button" value="Add" onClick={this.linkIssue}/>
+            </form>
             </div>;
   	if(issues.length>0)
   	{
