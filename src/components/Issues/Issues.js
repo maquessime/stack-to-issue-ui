@@ -51,35 +51,47 @@ class Issues extends Component {
   render() {
   	var issues = this.props.issues;
   	var issueLinks=this.props.issueLinks;
-    var addIssue = <div><h3>Link to an issue :</h3>
-    <form>
-<span for="hash">Hash : </span><input type="text" id="hash" ref="hash" size="74" onChange={this.handleChange} value={this.props.hash}/><br/>
-    <span>Issue : </span><input type="text" id="issue" ref="issue"/><br/>
-            <input type="button" value="Add" onClick={this.linkIssue}/>
-            </form>
-            </div>;
-  	if(issues.length>0)
+    var hash = this.props.hash;
+    var addIssue = <div>
+      <h3>Link to an issue :</h3>
+      <span for="hash">Hash : </span><input type="text" id="hash" ref="hash" size="74" onChange={this.handleChange} value={hash}/><br/>
+      <span>Issue : </span><input type="text" id="issue" ref="issue"/><br/>
+      <input type="button" value="Add" onClick={this.linkIssue}/>
+    </div>;
+  	var issuesSection = this.resolveIssuesSection(issues,issueLinks);
+  	if(!hash.length)
   	{
-	    return (
-	    	<div>
-		    	<h2>Issues</h2>
-		      	<ul>
-		      	{issues.map(function(issue,index){
-		      		return <li><a target="_blank" href={issueLinks[index]}>{issue}</a></li>
-		      	})}
-		      	</ul>
-            {addIssue}
-		    </div>
-	    );
-	}
-	return (
-		
-		<div>
-			<h2>Issues</h2>
-			<p>No issue has been found!</p> 
-			{addIssue}
-    </div>
-		);
+  		return (<div>{addIssue}</div>);
+  	}
+  	return (
+  		
+  		<div>
+  			{issuesSection}
+  			{addIssue}
+      </div>
+  		);
+    }
+
+  resolveIssuesSection(issues,issueLinks){
+    if(issues.length>0)
+    {
+      return (
+        <div>
+          <h2>Issues</h2>
+            <ul>
+            {issues.map(function(issue,index){
+              return <li><a target="_blank" href={issueLinks[index]}>{issue}</a></li>
+            })}
+            </ul>
+        </div>
+      );
+    }
+    return (
+      <div>
+        <h2>Issues</h2>
+        <p>No issue has been found!</p> 
+      </div>
+      );
   }
 
 }

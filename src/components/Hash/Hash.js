@@ -13,10 +13,14 @@ class Hash extends Component {
   };
 
   render() {
-    const title = 'New User Registration';
+    const title = 'Got Hash?';
     this.context.onSetTitle(title);
     return (
-      <Issues issues={[]} hash="" issueLinks={[]} />
+      <div className="HashPage">
+        <div className="HashPage-container">
+          <Issues issues={[]} hash="" issueLinks={[]} />
+        </div>
+      </div>
     );
   }
 
